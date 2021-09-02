@@ -43,7 +43,7 @@ def register(request):
         send_mail_verify( email, auth_token)
         
 
-        return redirect('/token_send')
+        return redirect('token_send')
 
         
     return render(request , 'register.html')
@@ -80,7 +80,7 @@ def login_custom(request):
 
 def send_mail_verify(email,token):
     subject = 'Your account needs to be verified'
-    message = f'Hi! paste the link to verify your account https://notepad990.herokuapp.com//verify/{token}'
+    message = f'Hi! paste the link to verify your account https://notepad990.herokuapp.com/verify/{token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
