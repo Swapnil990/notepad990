@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add note</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+        *{
+            margin: 0;
+            padding: 0%;
+            font-family: Nunito;
+            background: black;
+        }
+
+        .container{
+            border: 2px solid rgb(255, 254, 254);
+            display: inline-block;
+            margin-left: 30rem;
+            margin-top: 5rem;
+            max-width: 90%;
+            width: 30%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        a{
+            text-decoration: none;
+        }
+        .title{
+            font-size: 30px ;
+            color: white;
+            
+        }
+        .description{
+            font-size: 30px;
+            color: white;
+        }
+
+        input[type=text]{
+            width: 90%;
+            font-size: 20px;
+            margin: 10px;
+            margin-left: 5px;
+            color: white;
+            outline: none;
+            border: 2px solid white;
+            border-radius: 4px;
+        }
+        textarea{
+            width: 90%;
+            margin: 10px;
+            margin-left: 5px;
+            margin-bottom: 25px;
+            color: white;
+            outline: none;
+            border: 2px solid white;
+            border-radius: 4px;
+        }
+        .submit{
+            padding: 5px;
+            text-align: center;
+            margin-left: 12rem;
+            color: rgb(23, 255, 23);
+            border-color: rgb(12, 250, 12);
+            cursor: pointer;
+            font-size: medium;
+            transition: 0.2s;
+            border-radius: 5px;
+        }
+        .submit:hover{
+            background: rgb(7, 241, 7);
+            color: black;
+        }
+        .back{
+            color: red;
+            border: 1px solid red;
+            border-radius: 5px;
+            transition: 0.2s;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .back:hover{
+            color: white;
+            background: red;
+            
+        }
+        form{
+            margin-top: 10px;
+        }
+
+        @media screen and (max-width:760px){
+            .container{
+                margin-left: 0rem;
+                
+                width: 100%;
+                border: none;
+            }
+            .title{
+                font-size: 20px;
+            }
+            .description{
+                font-size: 20px;
+            }
+            .submit{
+                margin-left: 3rem;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <a href="{% url 'home' %}" class="back">Go back</a>
+        <form action="addnote" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="userself">
+            <label class="title">Title</label> <br>
+            <input type="text" name="title"> <br>
+            <label class="description">Description</label> <br>
+            <textarea name="description" cols="30" rows="4"></textarea> <br>
+            <input type="submit" class="submit" value="SAVE">
+        </form>
+    </div>
+    
+</body>
+</html>

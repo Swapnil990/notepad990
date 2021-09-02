@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+        *{  margin: 0;
+            padding: 0%;
+            font-family: Nunito;
+            background: black;
+        }
+
+        .container{
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            
+            display: inline-block;
+            margin-left: 30rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            width: 30%;
+            max-width: 90%;
+        }
+        
+
+
+        .container .delete{
+            text-decoration: none;
+            color: red;
+            text-shadow: brown;
+            transition: 0.2s;
+            border: 1px solid rgb(250, 15, 15);
+            border-radius: 2px;
+            padding: 2px;
+            margin: 2px;
+        }
+        .container .delete:hover{
+            background: rgb(252, 0, 0);
+            color: white;
+        }
+        .container .view{
+            text-decoration: none;
+            color: rgb(17, 228, 17);
+            transition: 0.2s;
+            border: 1px solid rgb(17, 204, 17);
+            border-radius: 2px;
+            padding: 2px;
+            margin: 2px;
+        }
+        .container .view:hover{
+            background: rgb(8, 235, 8);
+            color: black;
+        }
+        .add{
+            float: left;
+            text-decoration: none;
+            color: orange;
+            justify-content: center;
+            max-width: 20%;
+            border: 1px solid orange;
+            transition: 0.2s;
+            padding: 2px;
+        }
+        .add:hover{
+            background: orange;
+            color: black;
+        }
+
+        .logout{
+            float: right;
+            color: red;
+            text-decoration: none;
+            border: 1px solid red;
+            transition: 0.2s;
+            padding: 2px;
+        }
+        .logout:hover{
+            color: white;
+            background-color: red;
+        }
+        .title{
+            float: left;
+            display: flex;
+            width: 40%;
+            max-width: 60%;
+        }
+        .container div{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        @media screen and (max-width:760px) {
+            .container{
+               margin-left: 1rem;
+                width: 90%;
+                padding: 0%;
+                border: none;
+            }
+            .add{
+                padding: 1px;
+                font-size: 12px;
+                max-width: 40%;
+            }
+            .container .view{
+                font-size: 12px;
+            }
+            .logout{
+                font-size: 12px;
+            }
+            .title{
+                padding-right: 1rem;
+            }
+            .delete{
+                font-size: 12px;
+                
+            }
+        }
+
+        </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello {{request.user}}</h1>
+
+<a href="{% url 'create' %}" class="add" >Add Note</a>
+<a href="{% url 'logout' %}" class="logout">Log out</a>
+<br>
+{% for note in notes %}
+
+    {% csrf_token %}
+    <div>
+        <p class="title">{{note.title}}</p> <a class="view" href="{% url 'update' note.id %}">View / Edit</a> <a class="delete" href="{% url 'delete' note.id %}">Delete</a>
+
+    </div>
+    
+    
+    
+
+    
+{% endfor %}
+    </div>
+    
+</body>
+</html>
