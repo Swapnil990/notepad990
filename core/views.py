@@ -41,8 +41,6 @@ def register(request):
         profile = Profile.objects.create(user = obj, auth_token = auth_token)
         profile.save()
         send_mail_verify( email, auth_token)
-        
-
         return redirect('token_send')
 
         
